@@ -1,6 +1,9 @@
-﻿namespace ProjectManagementSystem.Domain.Modules.User;
+﻿namespace ProjectManagementSystem.Domain.Modules.Users;
 
-public class UserRole
+public enum UserRole
 {
+    Leader = 1,
+    ProjectManager = 2,
+    Employee = 3,
 }
 

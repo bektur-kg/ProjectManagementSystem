@@ -2,6 +2,6 @@
 
 public interface IWriteRepository<TEntity> where TEntity : Entity
 {
-    Task AddAsync(TEntity entity);
-    Task RemoveAsync(TEntity entity);
+    void Add(TEntity entity);
+    void Remove(TEntity entity);
 }

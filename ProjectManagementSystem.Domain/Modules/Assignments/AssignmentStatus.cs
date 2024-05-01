@@ -1,6 +1,9 @@
-﻿namespace ProjectManagementSystem.Domain.Modules.Tasks;
+﻿namespace ProjectManagementSystem.Domain.Modules.Assignments;
 
-public class TaskStatus
+public enum AssignmentStatus
 {
+    ToDo = 1,
+    InProgress = 2,
+    Done = 3
 }
 

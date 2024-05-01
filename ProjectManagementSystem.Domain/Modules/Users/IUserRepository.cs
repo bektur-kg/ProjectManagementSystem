@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ProjectManagementSystem.Domain.Abstractions;
 
-namespace ProjectManagementSystem.Domain.Modules.User;
-internal interface IUserRepository
-{
-}
+namespace ProjectManagementSystem.Domain.Modules.Users;
+
+public interface IUserRepository : IRepository<User>;

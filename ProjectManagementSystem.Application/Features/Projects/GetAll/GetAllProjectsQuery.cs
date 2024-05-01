@@ -1,6 +1,7 @@
-﻿namespace ProjectManagementSystem.Application.Features.Projects.GetAll;
+﻿using ProjectManagementSystem.Application.Abstractions;
+using ProjectManagementSystem.Application.Contracts.Project;
 
-public class GetAllProjectsQuery
-{
-}
+namespace ProjectManagementSystem.Application.Features.Projects.GetAll;
+
+public class GetAllProjectsQuery : IQuery<List<ProjectResponse>>;
 

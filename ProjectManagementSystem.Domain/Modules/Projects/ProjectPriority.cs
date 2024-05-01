@@ -1,6 +1,9 @@
 ﻿namespace ProjectManagementSystem.Domain.Modules.Projects;
 
-public class ProjectPriority
+public enum ProjectPriority
 {
+    High = 1,
+    Medium = 2,
+    Low = 3
 }
 

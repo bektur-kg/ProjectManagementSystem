@@ -2,5 +2,5 @@
 
 public interface IUnitOfWork
 {
-    public Task<int> SaveChangesAsync();
+    Task<int> SaveChangesAsync();
 }

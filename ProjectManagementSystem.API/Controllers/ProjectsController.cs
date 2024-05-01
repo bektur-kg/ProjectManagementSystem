@@ -1,5 +1,21 @@
-﻿namespace ProjectManagementSystem.API.Controllers;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using ProjectManagementSystem.Application.Contracts.Project;
+using ProjectManagementSystem.Application.Features.Projects.GetAll;
 
-public class ProjectsController
+namespace ProjectManagementSystem.API.Controllers;
+
+[ApiController]
+[Route("api/projects")]
+public class ProjectsController(ISender sender) : ControllerBase
 {
+    [HttpGet]
+    public async Task<ActionResult<ProjectResponse>> GetAll()
+    {
+        var query = new GetAllProjectsQuery();
+
+        var response = await sender.Send(query);
+
+        return Ok(response);
+    }
 }

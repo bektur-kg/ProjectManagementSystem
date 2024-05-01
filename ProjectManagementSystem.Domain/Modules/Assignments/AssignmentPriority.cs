@@ -1,6 +1,9 @@
-﻿namespace ProjectManagementSystem.Domain.Modules.Tasks;
+﻿namespace ProjectManagementSystem.Domain.Modules.Assignments;
 
-public class TaskPriority
+public enum AssignmentPriority
 {
+    High = 1,
+    Medium = 2,
+    Low = 3
 }
 

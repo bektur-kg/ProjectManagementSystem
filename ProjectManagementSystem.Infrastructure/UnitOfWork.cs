@@ -1,6 +1,9 @@
-﻿namespace ProjectManagementSystem.Infrastructure;
+﻿using ProjectManagementSystem.Application.Services;
 
-public class UnitOfWork
+namespace ProjectManagementSystem.Infrastructure;
+
+public class UnitOfWork(AppDbContext dbContext) : IUnitOfWork
 {
+    public Task<int> SaveChangesAsync() => dbContext.SaveChangesAsync();
 }
 

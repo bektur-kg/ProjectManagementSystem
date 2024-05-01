@@ -1,10 +1,9 @@
-﻿using ProjectManagementSystem.Domain.Abstractions;
-using ProjectManagementSystem.Domain.Modules.Assignments;
+﻿using ProjectManagementSystem.Domain.Modules.Assignments;
 using ProjectManagementSystem.Domain.Modules.Users;
 
-namespace ProjectManagementSystem.Domain.Modules.Comments;
+namespace ProjectManagementSystem.Application.Contracts.Comments;
 
-public class Comment : Entity
+public record CommentCreateRequest
 {
     public long? AuthorId { get; set; }
     public User? Author { get; set; }
