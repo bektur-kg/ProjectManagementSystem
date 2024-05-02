@@ -16,6 +16,11 @@ public class ProjectsController(ISender sender) : ControllerBase
 
         var response = await sender.Send(query);
 
-        return Ok(response);
+        if (response.IsSuccess)
+        {
+            return Ok(response.Data);
+        }
+
+        return BadRequest(response.Error);
     }
 }
