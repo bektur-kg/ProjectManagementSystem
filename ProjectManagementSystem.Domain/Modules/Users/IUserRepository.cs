@@ -2,4 +2,7 @@
 
 namespace ProjectManagementSystem.Domain.Modules.Users;
 
-public interface IUserRepository : IRepository<User>;
+public interface IUserRepository : IRepository<User>
+{
+    Task<User?> GetUserByEmailAsync(string email);
+}

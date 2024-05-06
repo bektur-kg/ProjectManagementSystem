@@ -10,6 +10,7 @@ using ProjectManagementSystem.Infrastructure.Modules.Assignments;
 using ProjectManagementSystem.Infrastructure.Modules.Comments;
 using ProjectManagementSystem.Infrastructure.Modules.Projects;
 using ProjectManagementSystem.Infrastructure.Modules.Users;
+using ProjectManagementSystem.Infrastructure.Services;
 
 namespace ProjectManagementSystem.Infrastructure.Extensions;
 
@@ -23,6 +24,8 @@ public static class DependencyInjection
         services.AddScoped<ICommentRepository, CommentRepository>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddTransient<IPasswordManager, PasswordManager>();
+        services.AddTransient<IJwtProvider, JwtProvider>();
 
         services.AddDbContext<AppDbContext>(optionsBuilder =>
         {

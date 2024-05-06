@@ -1,6 +1,6 @@
 ﻿using ProjectManagementSystem.Application.Services;
 
-namespace ProjectManagementSystem.Infrastructure;
+namespace ProjectManagementSystem.Infrastructure.Services;
 
 public class UnitOfWork(AppDbContext dbContext) : IUnitOfWork
 {

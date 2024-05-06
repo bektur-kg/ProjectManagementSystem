@@ -9,13 +9,12 @@ namespace ProjectManagementSystem.Application.Features.Projects.GetAll;
 public class GetAllProjectsQueryHandler(IProjectRepository repository, IMapper mapper) 
     : IQueryHandler<GetAllProjectsQuery, DataResult<List<ProjectResponse>>>
 {
-    public async Task<DataResult<List<ProjectResponse>>> Handle(GetAllProjectsQuery request, CancellationToken cancellationToken)
+    public async Task<DataResult<List<ProjectResponse>>> Handle
+        (GetAllProjectsQuery request, CancellationToken cancellationToken)
     {
         var projects = await repository.GetAllAsync();
 
         var mappedProjects = mapper.Map<List<ProjectResponse>>(projects);
-
-        return DataResult<List<ProjectResponse>>.Failure(ProjectErrors.ProjectNotFound);
 
         return DataResult<List<ProjectResponse>>.Success(mappedProjects);
     }

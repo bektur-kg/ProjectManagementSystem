@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjectManagementSystem.Domain.Abstractions;
 
-namespace ProjectManagementSystem.Infrastructure;
+namespace ProjectManagementSystem.Infrastructure.Services;
 
 public abstract class Repository<TEntity>(AppDbContext dbContext) : IRepository<TEntity> where TEntity : Entity
 {

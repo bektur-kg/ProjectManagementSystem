@@ -2,8 +2,8 @@
 
 namespace ProjectManagementSystem.Application.Features.Projects;
 
-public static class ProjectErrors
+public abstract class ProjectErrors
 {
-    public static Error ProjectNotFound = new("Project.NotFound", "Project is not found");
+    public Error ProjectNotFound = new("Project.NotFound", "Project is not found");
 }
 
