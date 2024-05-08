@@ -6,13 +6,15 @@ using System.Text;
 
 namespace ProjectManagementSystem.API.OptionsSetup;
 
-public class JwtBearerOptionsSetup(IOptions<JwtOptions> jwtOptions) : IConfigureOptions<JwtBearerOptions>
+public class JwtBearerOptionsSetup(IOptions<JwtOptions> jwtOptions) : IConfigureNamedOptions<JwtBearerOptions>
 {
     private readonly JwtOptions _jwtOptions = jwtOptions.Value;
 
-    public void Configure(JwtBearerOptions options)
+    public void Configure(string? name, JwtBearerOptions options)
     {
         var secretKey = Encoding.UTF8.GetBytes(_jwtOptions.SecretKey);
+
+        options.RequireHttpsMetadata = false;
 
         options.TokenValidationParameters = new()
         {
@@ -25,4 +27,6 @@ public class JwtBearerOptionsSetup(IOptions<JwtOptions> jwtOptions) : IConfigure
             IssuerSigningKey = new SymmetricSecurityKey(secretKey)
         };
     }
+
+    public void Configure(JwtBearerOptions options) => Configure(null, options);
 }

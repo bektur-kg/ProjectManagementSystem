@@ -10,7 +10,6 @@ namespace ProjectManagementSystem.API.Controllers;
 [Route("api/projects")]
 public class ProjectsController(ISender sender) : ControllerBase
 {
-    [Authorize]
     [HttpGet]
     public async Task<ActionResult<ProjectResponse>> GetAll()
     {

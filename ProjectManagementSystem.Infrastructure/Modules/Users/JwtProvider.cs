@@ -16,8 +16,9 @@ public sealed class JwtProvider(IOptions<JwtOptions> jwtOptions) : IJwtProvider
     {
         var claims = new Claim[]
         {
-            new(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-            new(JwtRegisteredClaimNames.Email, user.Email)
+            new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new(ClaimTypes.Email, user.Email),
+            new(ClaimTypes.Role, user.Role.ToString())
         };
 
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.SecretKey));
@@ -28,7 +29,7 @@ public sealed class JwtProvider(IOptions<JwtOptions> jwtOptions) : IJwtProvider
             _jwtOptions.Audience,
             claims,
             null,
-            DateTime.UtcNow.AddMinutes(3),
+            DateTime.UtcNow.AddMinutes(5),
             signingCredentials);
 
         var tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
