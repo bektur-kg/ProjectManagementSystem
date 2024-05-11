@@ -57,7 +57,7 @@ namespace ProjectManagementSystem.Infrastructure.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("Assignments");
+                    b.ToTable("Assignments", (string)null);
                 });
 
             modelBuilder.Entity("ProjectManagementSystem.Domain.Modules.Comments.Comment", b =>
@@ -84,7 +84,7 @@ namespace ProjectManagementSystem.Infrastructure.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("ProjectManagementSystem.Domain.Modules.Projects.Project", b =>
@@ -123,7 +123,7 @@ namespace ProjectManagementSystem.Infrastructure.Migrations
 
                     b.HasIndex("LeaderId");
 
-                    b.ToTable("Projects");
+                    b.ToTable("Projects", (string)null);
                 });
 
             modelBuilder.Entity("ProjectManagementSystem.Domain.Modules.Users.User", b =>
@@ -159,7 +159,7 @@ namespace ProjectManagementSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("ProjectUser", b =>
@@ -174,7 +174,7 @@ namespace ProjectManagementSystem.Infrastructure.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("ProjectUser");
+                    b.ToTable("ProjectUser", (string)null);
                 });
 
             modelBuilder.Entity("ProjectManagementSystem.Domain.Modules.Assignments.Assignment", b =>

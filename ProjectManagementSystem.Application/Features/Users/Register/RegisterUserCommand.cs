@@ -1,5 +1,5 @@
 ﻿using ProjectManagementSystem.Application.Abstractions;
-using ProjectManagementSystem.Application.Contracts.User;
+using ProjectManagementSystem.Application.Contracts.Users;
 using ProjectManagementSystem.Domain.Abstractions;
 
 namespace ProjectManagementSystem.Application.Features.Users.Register;

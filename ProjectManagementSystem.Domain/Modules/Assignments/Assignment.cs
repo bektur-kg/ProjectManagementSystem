@@ -14,9 +14,8 @@ public class Assignment : Entity
     public User? Executor { get; set; }
     public Project? Project { get; set; }
     public long? ProjectId { get; set; }
-    public List<Comment>? Comments { get; set; }
+    public List<Comment> Comments { get; set; } = [];
     public AssignmentPriority Priority { get; set; }
     public AssignmentStatus Status { get; set; }
-
 }
 

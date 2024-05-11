@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProjectManagementSystem.Application.Constants;
-using ProjectManagementSystem.Application.Contracts.User;
+using ProjectManagementSystem.Application.Contracts.Users;
 using ProjectManagementSystem.Application.Features.Users.Login;
 using ProjectManagementSystem.Application.Features.Users.Register;
 

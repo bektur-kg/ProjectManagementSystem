@@ -29,7 +29,7 @@ public sealed class JwtProvider(IOptions<JwtOptions> jwtOptions) : IJwtProvider
             _jwtOptions.Audience,
             claims,
             null,
-            DateTime.UtcNow.AddMinutes(5),
+            DateTime.UtcNow.AddMinutes(10),
             signingCredentials);
 
         var tokenValue = new JwtSecurityTokenHandler().WriteToken(token);

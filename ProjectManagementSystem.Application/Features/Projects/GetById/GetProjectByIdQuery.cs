@@ -2,7 +2,7 @@
 using ProjectManagementSystem.Application.Contracts.Projects;
 using ProjectManagementSystem.Domain.Abstractions;
 
-namespace ProjectManagementSystem.Application.Features.Projects.GetAll;
+namespace ProjectManagementSystem.Application.Features.Projects.GetById;
 
-public class GetAllProjectsQuery : IQuery<DataResult<List<ProjectResponse>>>;
+public record GetProjectByIdQuery(long ProjectId) : IQuery<DataResult<ProjectDetailedResponse>>;
 

@@ -3,7 +3,7 @@ using ProjectManagementSystem.Domain.Modules.Users;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace ProjectManagementSystem.Application.Contracts.User;
+namespace ProjectManagementSystem.Application.Contracts.Users;
 
 public record UserCreateRequest
 {

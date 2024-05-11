@@ -9,7 +9,7 @@ public static class DependencyInjection
     {
         return services
             .AddMediatR(config => config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()))
-            .AddAutoMapper(Assembly.GetExecutingAssembly());
+            .AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
     }
 }
 

@@ -14,19 +14,26 @@ public class RegisterUserCommandHandler
         IPasswordManager passwordManager
     ) : ICommandHandler<RegisterUserCommand, Result>
 {
+    private readonly IUserRepository _repository = repository;
+    private readonly IMapper _mapper = mapper;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly IPasswordManager _passwordManager = passwordManager;
+
     public async Task<Result> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
     {
-        var foundUser = await repository.GetUserByEmailAsync(request.Data.Email);
+        if (request.Data.Role == UserRole.Leader) return Result.Failure(UserErrors.CannotCreateLeader);
+
+        var foundUser = await _repository.GetUserByEmailAsync(request.Data.Email);
 
         if (foundUser is not null) return Result.Failure(UserErrors.UserAlreadyExists);
 
-        var hashedPassword = passwordManager.Hash(request.Data.Password);
+        var hashedPassword = _passwordManager.Hash(request.Data.Password);
 
-        var mappedUser = mapper.Map<User>(request.Data);
+        var mappedUser = _mapper.Map<User>(request.Data);
         mappedUser.PasswordHash = hashedPassword;
 
-        repository.Add(mappedUser);
-        await unitOfWork.SaveChangesAsync();
+        _repository.Add(mappedUser);
+        await _unitOfWork.SaveChangesAsync();
 
         return Result.Success();
     }
