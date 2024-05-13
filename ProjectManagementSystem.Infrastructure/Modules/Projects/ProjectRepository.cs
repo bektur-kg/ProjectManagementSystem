@@ -13,6 +13,17 @@ public class ProjectRepository(AppDbContext dbContext) : Repository<Project>(dbC
             .ToListAsync();
     }
 
+    public Task<Project?> GetProjectByIdWithIncludeAndTrackingAsync(long id, bool includeEmployees = false, bool includeLeader = false, bool includeAssignments = false)
+    {
+        var query = DbContext.Projects.AsQueryable();
+
+        if (includeEmployees) query = query.Include(project => project.Employees);
+        if (includeLeader) query = query.Include(project => project.Leader);
+        if (includeAssignments) query = query.Include(project => project.Assignments);
+
+        return query.FirstOrDefaultAsync(entity => entity.Id == id);
+    }
+
     public Task<Project?> GetProjectByIdWithIncludeAsync(long id, bool includeEmployees = false, bool includeLeader = false, bool includeAssignments = false)
     {
         var query = DbContext.Projects.AsNoTracking();

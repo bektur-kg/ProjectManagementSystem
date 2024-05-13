@@ -24,7 +24,8 @@ public class GetProjectByIdQueryHandler
     public async Task<DataResult<ProjectDetailedResponse>> Handle(GetProjectByIdQuery request,
         CancellationToken cancellationToken)
     {
-        var project = await _projectRepository.GetProjectByIdWithIncludeAsync(request.ProjectId, includeLeader: true);
+        var project = await _projectRepository.GetProjectByIdWithIncludeAsync(request.ProjectId, includeLeader: true, 
+            includeEmployees: true);
         var currentUserId = long.Parse(_httpContext.User.FindFirstValue(ClaimTypes.NameIdentifier)!);
         var currentUserRole = _httpContext.User.FindFirstValue(ClaimTypes.Role);
 
@@ -33,7 +34,7 @@ public class GetProjectByIdQueryHandler
         (
             (currentUserRole == UserRole.ProjectManager.ToString() ||
             currentUserRole == UserRole.Employee.ToString()) &&
-            !project.Employees.Any(employee => employee.Id == currentUserId)
+            !project.Employees.Any(employee => employee.Id == currentUserId) 
         )
         {
             return DataResult<ProjectDetailedResponse>.Failure(ProjectErrors.NotAccessible);

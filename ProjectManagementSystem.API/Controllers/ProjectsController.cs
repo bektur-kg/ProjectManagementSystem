@@ -4,11 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 using ProjectManagementSystem.Application.Constants;
 using ProjectManagementSystem.Application.Contracts.Projects;
 using ProjectManagementSystem.Application.Features.Projects;
+using ProjectManagementSystem.Application.Features.Projects.AddEmployee;
 using ProjectManagementSystem.Application.Features.Projects.Create;
+using ProjectManagementSystem.Application.Features.Projects.Delete;
 using ProjectManagementSystem.Application.Features.Projects.GetAll;
 using ProjectManagementSystem.Application.Features.Projects.GetById;
 using ProjectManagementSystem.Application.Features.Projects.GetCurrentUserProjects;
-using ProjectManagementSystem.Application.Features.Projects.PartilUpdate;
+using ProjectManagementSystem.Application.Features.Projects.PartialUpdate;
+using ProjectManagementSystem.Application.Features.Projects.RemoveEmployee;
 
 namespace ProjectManagementSystem.API.Controllers;
 
@@ -67,6 +70,39 @@ public class ProjectsController(ISender sender) : ControllerBase
     public async Task<ActionResult<ProjectResponse>> PartialChangeProject(long id, PartialChangeProjectRequest dto)
     {
         var query = new PartialUpdateProjectCommand(id, dto);
+
+        var response = await sender.Send(query);
+
+        return response.IsSuccess ? NoContent() : BadRequest(response.Error);
+    }
+
+    [Authorize(Roles = UserRoleMatches.Leader)]
+    [HttpDelete("projects/{id}")]
+    public async Task<ActionResult<ProjectResponse>> DeleteProject(long id)
+    {
+        var query = new DeleteProjectCommand(id);
+
+        var response = await sender.Send(query);
+
+        return response.IsSuccess ? NoContent() : BadRequest(response.Error);
+    }
+
+    [Authorize(Roles = UserRoleMatches.LeaderOrManager)]
+    [HttpPost("projects/{id}/employees")]
+    public async Task<ActionResult<ProjectResponse>> AddEmployee(long id, long employeeId)
+    {
+        var query = new AddEmployeeToProjectComand(id, employeeId);
+
+        var response = await sender.Send(query);
+
+        return response.IsSuccess ? NoContent() : BadRequest(response.Error);
+    }
+
+    [Authorize(Roles = UserRoleMatches.LeaderOrManager)]
+    [HttpDelete("projects/{id}/employees")]
+    public async Task<ActionResult<ProjectResponse>> RemoveEmployee(long id, long employeeId)
+    {
+        var query = new RemoveEmployeeFromProjectCommand(id, employeeId);
 
         var response = await sender.Send(query);
 

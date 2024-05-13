@@ -6,7 +6,7 @@ using ProjectManagementSystem.Domain.Abstractions;
 using ProjectManagementSystem.Domain.Modules.Projects;
 using ProjectManagementSystem.Domain.Modules.Users;
 
-namespace ProjectManagementSystem.Application.Features.Projects.PartilUpdate;
+namespace ProjectManagementSystem.Application.Features.Projects.PartialUpdate;
 
 public class PartialUpdateProjectCommandHandler
     (
@@ -27,20 +27,21 @@ public class PartialUpdateProjectCommandHandler
         var leader = request.Data.LeaderId > 0 ? await _userRepository.GetByIdAsync((long)request.Data.LeaderId) : null;
 
         if (leader is null) return Result.Failure(UserErrors.UserNotFound);
+        if (leader.Role == UserRole.Leader) return Result.Failure(ProjectErrors.CannotAddLeaderAsEmployee);
 
-        var projectToUpdate = await _projectRepository.GetByIdAsync(request.projectId);
+        var projectToUpdate = await _projectRepository.GetProjectByIdWithIncludeAsync(request.projectId, includeEmployees: true, includeLeader: true);
 
         if (projectToUpdate is null) return Result.Failure(ProjectErrors.ProjectNotFound);
 
         _mapper.Map(request.Data, projectToUpdate);
-        
-        if 
+
+        if
         (
             request.Data.LeaderId > 0 &&
             !projectToUpdate.Employees.Any(employee => employee.Id == request.Data.LeaderId)
         )
         {
-            projectToUpdate.Employees.Add(leader);  
+            projectToUpdate.Employees.Add(leader);
         }
 
         _projectRepository.Update(projectToUpdate);
