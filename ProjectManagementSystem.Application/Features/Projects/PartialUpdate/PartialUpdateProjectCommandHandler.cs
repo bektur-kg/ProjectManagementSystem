@@ -26,10 +26,10 @@ public class PartialUpdateProjectCommandHandler
     {
         var leader = request.Data.LeaderId > 0 ? await _userRepository.GetByIdAsync((long)request.Data.LeaderId) : null;
 
-        if (leader is null) return Result.Failure(UserErrors.UserNotFound);
-        if (leader.Role == UserRole.Leader) return Result.Failure(ProjectErrors.CannotAddLeaderAsEmployee);
+        if (leader is null && request.Data.LeaderId > 0) return Result.Failure(UserErrors.UserNotFound);
+        if (leader?.Role == UserRole.Leader) return Result.Failure(ProjectErrors.CannotAddLeaderAsEmployee);
 
-        var projectToUpdate = await _projectRepository.GetProjectByIdWithIncludeAsync(request.projectId, includeEmployees: true, includeLeader: true);
+        var projectToUpdate = await _projectRepository.GetProjectByIdWithIncludeAsync(request.projectId, includeEmployees: true);
 
         if (projectToUpdate is null) return Result.Failure(ProjectErrors.ProjectNotFound);
 
