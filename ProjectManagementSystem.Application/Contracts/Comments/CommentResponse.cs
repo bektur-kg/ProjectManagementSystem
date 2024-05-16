@@ -1,11 +1,11 @@
-﻿using ProjectManagementSystem.Domain.Modules.Assignments;
-using ProjectManagementSystem.Domain.Modules.Users;
+﻿using ProjectManagementSystem.Application.Contracts.Users;
 
 namespace ProjectManagementSystem.Application.Contracts.Comments;
 
 public record CommentResponse
 {
-    public User? Author { get; set; }
+    public long Id { get; set; }
+    public UserResponse? Author { get; set; }
     public required string Content { get; set; }
 }
 

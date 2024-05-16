@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagementSystem.API", "ProjectManagementSystem.API\ProjectManagementSystem.API.csproj", "{6C463DDE-EDD5-417D-925C-2593D5AFBFDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManagementSystem.API", "ProjectManagementSystem.API\ProjectManagementSystem.API.csproj", "{6C463DDE-EDD5-417D-925C-2593D5AFBFDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagementSystem.Domain", "ProjectManagementSystem.Domain\ProjectManagementSystem.Domain.csproj", "{9CAA7B02-28A8-44AD-BE6F-B4573BD352E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManagementSystem.Domain", "ProjectManagementSystem.Domain\ProjectManagementSystem.Domain.csproj", "{9CAA7B02-28A8-44AD-BE6F-B4573BD352E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagementSystem.Application", "ProjectManagementSystem.Application\ProjectManagementSystem.Application.csproj", "{9BB93FA3-E92F-4E8C-A1FE-B0F90C5FF07D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManagementSystem.Application", "ProjectManagementSystem.Application\ProjectManagementSystem.Application.csproj", "{9BB93FA3-E92F-4E8C-A1FE-B0F90C5FF07D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagementSystem.Infrastructure", "ProjectManagementSystem.Infrastructure\ProjectManagementSystem.Infrastructure.csproj", "{CFCB45EF-D0E5-4C45-8BB8-F3377B16A09F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManagementSystem.Infrastructure", "ProjectManagementSystem.Infrastructure\ProjectManagementSystem.Infrastructure.csproj", "{CFCB45EF-D0E5-4C45-8BB8-F3377B16A09F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
